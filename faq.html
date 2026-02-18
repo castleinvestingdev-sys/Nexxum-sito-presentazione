@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexxum - FAQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── FAQ Hero ── */
+        .faq-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+        .faq-hero-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            text-align: center;
+        }
+        .faq-hero-badge {
+            display: inline-block;
+            background: rgba(74, 108, 247, 0.1);
+            color: #4a6cf7;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+        .faq-hero-title {
+            font-size: 64px;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+        .faq-hero-subtitle {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .faq-search-wrap {
+            position: relative;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .faq-search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+        .faq-search {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            color: #1a1a2e;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.25s ease;
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .faq-search:focus {
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.08), 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .faq-search::placeholder { color: #b0b8c9; }
+
+        /* ── FAQ Body ── */
+        .faq-body {
+            padding: 60px 0 120px;
+            background: #ffffff;
+        }
+        .faq-body-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* ── Category ── */
+        .faq-category {
+            margin-bottom: 56px;
+        }
+        .faq-category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .faq-category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(74, 108, 247, 0.12) 0%, rgba(74, 108, 247, 0.06) 100%);
+            color: #4a6cf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .faq-category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        /* ── Accordion ── */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .faq-item {
+            background: #f8faff;
+            border: 1.5px solid #e8eef8;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .faq-item.open {
+            border-color: #c7d5fc;
+            box-shadow: 0 4px 16px rgba(74, 108, 247, 0.08);
+        }
+        .faq-item.hidden-by-search {
+            display: none;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+        }
+        .faq-question-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a2e;
+            line-height: 1.4;
+        }
+        .faq-chevron {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: #9ca3af;
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+            color: #4a6cf7;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            border-top: 1px solid #edf0f7;
+            padding-top: 16px;
+        }
+        .faq-answer-inner a {
+            color: #4a6cf7;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .faq-answer-inner a:hover { text-decoration: underline; }
+
+        /* ── No results ── */
+        .faq-no-results {
+            text-align: center;
+            padding: 60px 0;
+            display: none;
+        }
+        .faq-no-results p {
+            font-size: 16px;
+            color: #9ca3af;
+            margin-bottom: 16px;
+        }
+
+        /* ── CTA bottom ── */
+        .faq-cta {
+            background: linear-gradient(135deg, #4a6cf7 0%, #3b5bdb 100%);
+            border-radius: 20px;
+            padding: 48px 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .faq-cta-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .faq-cta-sub {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 28px;
+        }
+        .btn-faq-cta {
+            display: inline-block;
+            background: #ffffff;
+            color: #4a6cf7;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-faq-cta:hover {
+            background: #f0f4ff;
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════
+           CHATBOT
+        ═══════════════════════════════ */
+        .chatbot-bubble {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+        }
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a6cf7 0%, #3b5bdb 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(74, 108, 247, 0.4);
+            transition: all 0.3s ease;
+            color: #ffffff;
+        }
+        .chatbot-toggle:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 32px rgba(74, 108, 247, 0.5);
+        }
+        .chatbot-toggle .icon-chat,
+        .chatbot-toggle .icon-close { transition: opacity 0.2s ease, transform 0.2s ease; }
+        .chatbot-toggle .icon-close {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-45deg);
+        }
+        .chatbot-bubble.open .chatbot-toggle .icon-chat { opacity: 0; transform: rotate(45deg); }
+        .chatbot-bubble.open .chatbot-toggle .icon-close { opacity: 1; transform: rotate(0deg); }
+
+        .chatbot-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: #e53e3e;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chatbot-badge.hidden { display: none; }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 76px;
+            right: 0;
+            width: 360px;
+            max-height: 520px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.85) translateY(20px);
+            transform-origin: bottom right;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .chatbot-bubble.open .chatbot-window {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #4a6cf7 0%, #3b5bdb 100%);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chatbot-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .chatbot-header-info { flex: 1; }
+        .chatbot-header-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .chatbot-header-status {
+            font-size: 12px;
+            color: rgba(255,255,255,0.75);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            display: inline-block;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+        }
+        .chatbot-messages::-webkit-scrollbar { width: 4px; }
+        .chatbot-messages::-webkit-scrollbar-track { background: transparent; }
+        .chatbot-messages::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+
+        .msg {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+        .msg.bot { justify-content: flex-start; }
+        .msg.user { justify-content: flex-end; }
+
+        .msg-bubble {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        .msg.bot .msg-bubble {
+            background: #f0f4ff;
+            color: #1a1a2e;
+            border-bottom-left-radius: 4px;
+        }
+        .msg.user .msg-bubble {
+            background: #4a6cf7;
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a6cf7, #3b5bdb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Quick replies */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .quick-reply-btn {
+            background: #ffffff;
+            border: 1.5px solid #d0d8f0;
+            color: #4a6cf7;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            padding: 6px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .quick-reply-btn:hover {
+            background: #4a6cf7;
+            color: #ffffff;
+            border-color: #4a6cf7;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+        .typing-indicator.show { display: flex; }
+        .typing-dots {
+            background: #f0f4ff;
+            padding: 10px 14px;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9ca3af;
+            animation: typing 1.2s infinite;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        /* Input area */
+        .chatbot-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid #f0f4ff;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .chatbot-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-family: 'Inter', sans-serif;
+            color: #1a1a2e;
+            background: #f8faff;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .chatbot-input:focus { border-color: #4a6cf7; background: #fff; }
+        .chatbot-input::placeholder { color: #b0b8c9; }
+        .chatbot-send {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #4a6cf7;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .chatbot-send:hover { background: #3b5bdb; transform: scale(1.05); }
+        .chatbot-send:disabled { background: #d0d8f0; cursor: not-allowed; transform: none; }
+
+        @media (max-width: 768px) {
+            .faq-hero-title { font-size: 42px; }
+            .faq-body-container, .faq-hero-container { padding: 0 24px; }
+            .chatbot-window { width: calc(100vw - 56px); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="260130_Nexxum_Logo.png" alt="Nexxum" class="logo-img">
+                </a>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="fid.html" class="nav-link">
+                            <img src="icons8-impronta-digitale-50-blue.png" alt="FID" class="nav-icon-img">
+                            FID
+                        </a>
+                    </li>
+                    <li><a href="players.html" class="nav-link">Players</a></li>
+                    <li>
+                        <a href="academy.html" class="nav-link">
+                            <img src="mortarboard-blue.png" alt="Academy" class="nav-icon-img">
+                            Academy
+                        </a>
+                    </li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/authenticate?client_id=nexxum-data&tab_id=F_lFXhoql-0" class="nav-link login">Accedi</a>
+                <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/registration?client_id=nexxum-data&tab_id=er_XM1Qq2pM" class="btn-register">Registrati</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ── Hero ── -->
+        <section class="faq-hero">
+            <div class="faq-hero-container">
+                <div class="faq-hero-badge">Supporto</div>
+                <h1 class="faq-hero-title">Domande frequenti</h1>
+                <p class="faq-hero-subtitle">Trova rapidamente risposta alle domande più comuni su Nexxum.<br>Non trovi quello che cerchi? Scrivici.</p>
+                <div class="faq-search-wrap">
+                    <svg class="faq-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="faqSearch" class="faq-search" placeholder="Cerca tra le domande...">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FAQ Body ── -->
+        <section class="faq-body">
+            <div class="faq-body-container">
+
+                <!-- 1 · Cos'è la FID -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Cos'è la FID</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Che cos'è la FID?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">La FID (Financial Identity Document) è l'identità economico-finanziaria di un'impresa. Si tratta di un set documentale standardizzato che raccoglie dati provenienti da fonti ufficiali, tra cui:<br><br>• <strong>Cerved</strong> per i dati di bilancio<br>• <strong>Centrale Rischi della Banca d'Italia</strong> per l'analisi dell'esposizione bancaria</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 · Quale FID scegliere -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Quale FID scegliere in base alla professione</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Sono un Commercialista: quale FID dovrei acquisire per le imprese che seguo?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">La soluzione consigliata è la <strong>FID Pro</strong>, perché:<br><br>• Acquisisce automaticamente i dati ufficiali<br>• Permette analisi su bozze di bilancio<br>• Consente simulazioni e scenari prospettici</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Sono un Consulente Finanziario: quale FID dovrei acquisire?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">La soluzione più adatta è la <strong>FID Plus</strong>, che:<br><br>• Acquisisce automaticamente tutti i dati necessari<br>• Permette di dialogare con l'imprenditore con dati autorevoli e completi</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Sono un Mediatore Creditizio: quale FID dovrei acquisire?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">La soluzione indicata è la <strong>FID Premium</strong>, progettata per:<br><br>• Ottenere tutti i dati necessari<br>• Effettuare una pre-valutazione creditizia efficace</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Mi occupo esclusivamente di credito: posso analizzare solo la Centrale Rischi?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Puoi acquisire la <strong>FID Basic</strong>, che consente fino a 12 elaborazioni della Centrale Rischi.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 · Upgrade e gestione -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Upgrade e gestione delle FID</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Ho acquisito una FID Basic e voglio ampliare i servizi: posso farlo?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Puoi effettuare l'upgrade in qualsiasi momento (es. da FID Basic a FID Pro).</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Ho acquisito una FID Pro ma alcuni servizi non mi servono più: posso fare il downgrade?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Il downgrade è possibile in qualsiasi momento, ma la FID manterrà lo status attuale fino alla scadenza.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso eliminare una FID?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Ti consigliamo di scaricare prima tutte le elaborazioni effettuate.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 · Servizi e funzionalità -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Servizi di analisi e funzionalità</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Vorrei utilizzare il servizio delle bozze di bilancio: come faccio?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Segui questi passaggi:<br><br>1. Seleziona la FID interessata<br>2. Accedi al servizio <strong>Analisi Storica di Bilancio</strong><br>3. Entra in Ce.Bi. Suite tramite l'apposito pulsante<br>4. Crea la bozza di bilancio<br>5. Scaricala e ricaricala su Nexxum per completare la FID</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso ottenere solo i bilanci prospettici?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">No. Per ottenere le elaborazioni prospettiche automatiche è necessario acquisire una FID che includa l'Analisi Storica di Bilancio.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Come funzionano il completamento della FID e il punteggio?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Il sistema valuta la completezza documentale tramite un algoritmo che considera:<br><br>• I servizi disponibili nella FID<br>• Il livello di documentazione caricata<br><br>Il punteggio sarà pienamente coerente solo quando tutti i servizi previsti saranno attivi.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Se l'azienda non deposita bilanci, la FID rimarrà incompleta?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">No. L'algoritmo riconosce la tipologia di azienda e ricalibra automaticamente il punteggio in base ai servizi realmente disponibili.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 · Tempi di elaborazione -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Tempi di elaborazione</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Quanto tempo serve per recuperare i dati di bilancio?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">• <strong>Mediamente:</strong> circa 10 minuti<br>• <strong>In caso di traffico elevato:</strong> fino a 30 minuti</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Quanto tempo serve per elaborare la Centrale Rischi?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">• <strong>Mediamente:</strong> circa 10 minuti<br>• <strong>In caso di traffico elevato:</strong> fino a 30 minuti</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 · Risoluzione problemi -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Risoluzione problemi</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Errore nell'elaborazione dei bilanci: cosa fare?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Invia una mail a <a href="mailto:assistenza@nexxum.it">assistenza@nexxum.it</a>. Il team verificherà se il problema dipende dall'infrastruttura Nexxum o dai flussi Cerved.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Errore nell'elaborazione della Centrale Rischi: cosa fare?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Prima di contattare l'assistenza, verifica che:<br><br>• Il PDF caricato sia la visura originale della CR, non modificata<br>• Codice fiscale e Partita IVA coincidano con l'anagrafica selezionata<br><br>Se il problema persiste, scrivi a <a href="mailto:assistenza@nexxum.it">assistenza@nexxum.it</a>.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Ho ottenuto l'analisi storica ma non quella prospettica: cosa fare?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Contatta l'assistenza. In alcuni casi i bilanci prospettici potrebbero non essere disponibili nei flussi documentali Cerved.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 · Gestione anagrafiche -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Gestione anagrafiche</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso censire una società di persone?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Il sistema potrebbe non riconoscere automaticamente la partita IVA, ma potrai censire manualmente la FID.<br><br><strong>Nota:</strong> in questo caso saranno disponibili solo i servizi gestiti (es. Centrale Rischi).</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8 · Condivisione e collaborazione -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Condivisione e collaborazione</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso condividere la FID con un collega?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Dalla sezione <strong>Partners</strong> puoi invitare un collega a:<br><br>• Visualizzare la FID<br>• Collaborare operativamente</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso condividere la FID con il titolare dell'azienda?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Puoi invitare il titolare tramite la sezione <strong>Referenti</strong> per consentire la sola visualizzazione.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9 · Dossier -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Dossier e documentazione</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Posso creare un Dossier FID con documenti personali?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Puoi caricare documenti nella sezione <strong>Documenti</strong> e scegliere quali includere quando generi il Dossier.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10 · Crediti e acquisti -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Crediti e acquisti</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Non ho più crediti o Chiavi FID: cosa posso fare?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Accedi al <strong>Wallet</strong> e ricarica i crediti.<br><br><strong>Nota:</strong> il sistema crediti sarà progressivamente dismesso e gli acquisti saranno effettuabili tramite carta. I crediti residui resteranno comunque utilizzabili.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11 · Formazione ed eventi -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Formazione ed eventi</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Vorrei partecipare a un corso di formazione: come fare?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Puoi:<br><br>• Monitorare la sezione <strong>Eventi in programma</strong><br>• <a href="contatti.html">Contattare Nexxum</a> per conoscere le iniziative dedicate alla tua categoria professionale</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12 · Convenzioni e agevolazioni -->
+                <div class="faq-category">
+                    <div class="faq-category-header">
+                        <div class="faq-category-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <h2 class="faq-category-title">Convenzioni e agevolazioni</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Sono socio COFIP: ho vantaggi?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Hai accesso a scontistiche dedicate tramite i coupon riservati.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">
+                                <span class="faq-question-text">Sono consulente Fideuram: ho vantaggi?</span>
+                                <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-answer" role="region">
+                                <div class="faq-answer-inner">Sì. Se hai partecipato ai percorsi formativi previsti, hai diritto a un pacchetto gratuito di FID test.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No results -->
+                <div id="faqNoResults" class="faq-no-results">
+                    <p>Nessun risultato trovato per la tua ricerca.</p>
+                    <a href="contatti.html" class="btn-faq-cta" style="display:inline-block; background:#4a6cf7; color:#fff;">Contattaci direttamente</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="faq-cta">
+                    <p class="faq-cta-title">Non hai trovato risposta?</p>
+                    <p class="faq-cta-sub">Il nostro team è pronto ad aiutarti. Scrivici e ti risponderemo al più presto.</p>
+                    <a href="contatti.html" class="btn-faq-cta">Contattaci</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h4>Sito Web</h4>
+                    <a href="index.html">Home</a>
+                    <a href="fid.html">FID</a>
+                    <a href="players.html">Players</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Login</h4>
+                    <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/registration?client_id=nexxum-data&tab_id=er_XM1Qq2pM">Registrati</a>
+                    <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/authenticate?client_id=nexxum-data&tab_id=F_lFXhoql-0">Accedi</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Azienda</h4>
+                    <a href="about.html">About</a>
+                    <a href="lavora.html" class="footer-link-red">Lavora con noi</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Supporto</h4>
+                    <a href="contatti.html" class="footer-link-red">Contattaci</a>
+                    <a href="faq.html" class="footer-link-red">FAQ</a>
+                    <a href="tutorial.html" class="footer-link-red">Tutorial</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Trasparenza</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="termini.html">Termini e condizioni di utilizzo</a>
+                    <a href="privacy.html#cookie-policy">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════
+         CHATBOT
+    ═══════════════════════════════ -->
+    <div class="chatbot-bubble" id="chatbotBubble">
+        <div class="chatbot-window" id="chatbotWindow" aria-label="Assistente Nexxum">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div class="chatbot-header-info">
+                    <div class="chatbot-header-name">Assistente Nexxum</div>
+                    <div class="chatbot-header-status"><span class="status-dot"></span>Online · risponde subito</div>
+                </div>
+            </div>
+
+            <div class="chatbot-messages" id="chatMessages">
+                <!-- Welcome message injected by JS -->
+            </div>
+
+            <div class="chatbot-input-area">
+                <input type="text" id="chatInput" class="chatbot-input" placeholder="Scrivi un messaggio..." autocomplete="off">
+                <button id="chatSend" class="chatbot-send" aria-label="Invia">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Apri assistente">
+            <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="chatbot-badge" id="chatBadge">1</div>
+    </div>
+
+    <script>
+    /* ── FAQ Accordion ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('open');
+
+            // close all
+            document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                openItem.classList.remove('open');
+                openItem.querySelector('.faq-answer').style.maxHeight = null;
+                openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                item.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    /* ── FAQ Search ── */
+    const faqSearch = document.getElementById('faqSearch');
+    faqSearch.addEventListener('input', () => {
+        const q = faqSearch.value.toLowerCase().trim();
+        let visible = 0;
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const text = item.querySelector('.faq-question-text').textContent.toLowerCase()
+                       + item.querySelector('.faq-answer-inner').textContent.toLowerCase();
+            if (!q || text.includes(q)) {
+                item.classList.remove('hidden-by-search');
+                visible++;
+            } else {
+                item.classList.add('hidden-by-search');
+                // close if hidden
+                item.classList.remove('open');
+                item.querySelector('.faq-answer').style.maxHeight = null;
+            }
+        });
+        document.getElementById('faqNoResults').style.display = (visible === 0 && q) ? 'block' : 'none';
+
+        // hide empty categories
+        document.querySelectorAll('.faq-category').forEach(cat => {
+            const anyVisible = [...cat.querySelectorAll('.faq-item')].some(i => !i.classList.contains('hidden-by-search'));
+            cat.style.display = anyVisible ? '' : 'none';
+        });
+    });
+
+    /* ── Chatbot ── */
+    const bubble   = document.getElementById('chatbotBubble');
+    const toggle   = document.getElementById('chatbotToggle');
+    const badge    = document.getElementById('chatBadge');
+    const messages = document.getElementById('chatMessages');
+    const input    = document.getElementById('chatInput');
+    const sendBtn  = document.getElementById('chatSend');
+
+    let isOpen = false;
+
+    // Knowledge base
+    const KB = [
+        { keys: ['cos\'è la fid','cosa è fid','fid cos','financial identity'], answer: 'La FID (Financial Identity Document) è l\'identità economico-finanziaria di un\'impresa: un set documentale standardizzato che raccoglie dati da Cerved (bilanci) e dalla Centrale Rischi della Banca d\'Italia.' },
+        { keys: ['commercialista','quale fid commercialista'], answer: 'Per i Commercialisti è consigliata la FID Pro: acquisisce automaticamente i dati ufficiali, permette analisi su bozze di bilancio e consente simulazioni e scenari prospettici.' },
+        { keys: ['consulente finanziario','quale fid consulente'], answer: 'Per i Consulenti Finanziari è consigliata la FID Plus: acquisisce automaticamente tutti i dati necessari e permette di dialogare con l\'imprenditore con dati autorevoli e completi.' },
+        { keys: ['mediatore','mediatore creditizio','quale fid mediatore'], answer: 'Per i Mediatori Creditizi è consigliata la FID Premium: ottieni tutti i dati necessari e puoi effettuare una pre-valutazione creditizia efficace.' },
+        { keys: ['centrale rischi','solo cr','fid basic'], answer: 'Se ti occupi esclusivamente di credito puoi acquisire la FID Basic, che consente fino a 12 elaborazioni della Centrale Rischi.' },
+        { keys: ['upgrade','ampliare','passare da fid'], answer: 'Sì, puoi effettuare l\'upgrade della FID in qualsiasi momento (es. da FID Basic a FID Pro).' },
+        { keys: ['downgrade','ridurre fid'], answer: 'Il downgrade è possibile in qualsiasi momento, ma la FID manterrà lo status attuale fino alla scadenza.' },
+        { keys: ['eliminare fid','cancellare fid'], answer: 'Sì, puoi eliminare una FID. Ti consigliamo di scaricare prima tutte le elaborazioni effettuate.' },
+        { keys: ['bozze bilancio','ce.bi','bilancio bozza'], answer: 'Per le bozze di bilancio: seleziona la FID → Analisi Storica di Bilancio → Ce.Bi. Suite → crea la bozza → scaricala e ricaricala su Nexxum.' },
+        { keys: ['prospettico','bilancio prospettico'], answer: 'No, non puoi ottenere solo i bilanci prospettici. Le elaborazioni prospettiche automatiche richiedono una FID con Analisi Storica di Bilancio inclusa.' },
+        { keys: ['punteggio','completamento fid','algoritmo'], answer: 'Il punteggio valuta la completezza documentale in base ai servizi disponibili nella FID e alla documentazione caricata. Se l\'azienda non deposita bilanci, l\'algoritmo ricalibra automaticamente il punteggio.' },
+        { keys: ['tempo','quanto tempo','elaborazione','minuti'], answer: 'I tempi di elaborazione sono circa 10 minuti in condizioni normali, fino a 30 minuti in caso di traffico elevato. Vale sia per i bilanci che per la Centrale Rischi.' },
+        { keys: ['errore bilancio','problema bilancio'], answer: 'In caso di errore nell\'elaborazione dei bilanci, scrivi a assistenza@nexxum.it. Il team verificherà se il problema dipende da Nexxum o dai flussi Cerved.' },
+        { keys: ['errore centrale rischi','problema cr','pdf cr'], answer: 'Prima di contattare l\'assistenza verifica che il PDF sia la visura originale non modificata e che codice fiscale e P.IVA coincidano con l\'anagrafica. Se il problema persiste: assistenza@nexxum.it.' },
+        { keys: ['società di persone','snc','sas','partita iva'], answer: 'Sì, puoi censire una società di persone. Il sistema potrebbe non riconoscere automaticamente la P.IVA, ma puoi censire la FID manualmente. Saranno disponibili solo i servizi gestiti (es. Centrale Rischi).' },
+        { keys: ['condividere fid','partner','collega'], answer: 'Sì! Dalla sezione Partners puoi invitare un collega a visualizzare la FID o collaborare operativamente. Dalla sezione Referenti puoi invitare il titolare dell\'azienda per la sola visualizzazione.' },
+        { keys: ['dossier','documenti','caricare documenti'], answer: 'Sì, puoi caricare documenti nella sezione Documenti e scegliere quali includere quando generi il Dossier FID.' },
+        { keys: ['crediti','wallet','chiavi fid','ricarica'], answer: 'Accedi al Wallet e ricarica i crediti. Il sistema crediti sarà progressivamente dismesso e gli acquisti passeranno tramite carta, ma i crediti residui resteranno utilizzabili.' },
+        { keys: ['formazione','corso','evento','eventi'], answer: 'Puoi monitorare la sezione Eventi in programma o contattare Nexxum per conoscere le iniziative dedicate alla tua categoria professionale.' },
+        { keys: ['cofip','socio cofip'], answer: 'Sì! I soci COFIP hanno accesso a scontistiche dedicate tramite coupon riservati.' },
+        { keys: ['fideuram','consulente fideuram'], answer: 'Sì! Se hai partecipato ai percorsi formativi previsti hai diritto a un pacchetto gratuito di FID test.' },
+        { keys: ['contatt','email','telefon','support','assistenza'], answer: 'Puoi contattarci a assistenza@nexxum.it oppure al +39 376 031 3150. Il team risponde il prima possibile.' },
+        { keys: ['tutorial','guida','manuale','come usare'], answer: 'Nella sezione Tutorial trovi video e PDF per usare al meglio Nexxum: tutorial della piattaforma, manuali di bilancio e guide sulla Centrale Rischi.' },
+    ];
+
+    function findAnswer(text) {
+        const t = text.toLowerCase();
+        for (const entry of KB) {
+            if (entry.keys.some(k => t.includes(k))) return entry.answer;
+        }
+        return null;
+    }
+
+    const QUICK = ['Cos\'è la FID?', 'Come mi registro?', 'Piani e prezzi', 'Contatto supporto'];
+
+    function addMessage(text, role, quickReplies = []) {
+        const wrap = document.createElement('div');
+        wrap.className = `msg ${role}`;
+
+        if (role === 'bot') {
+            const av = document.createElement('div');
+            av.className = 'msg-avatar';
+            av.textContent = 'N';
+            wrap.appendChild(av);
+        }
+
+        const col = document.createElement('div');
+        col.style.display = 'flex';
+        col.style.flexDirection = 'column';
+        col.style.gap = '6px';
+
+        const bbl = document.createElement('div');
+        bbl.className = 'msg-bubble';
+        bbl.textContent = text;
+        col.appendChild(bbl);
+
+        if (quickReplies.length) {
+            const qr = document.createElement('div');
+            qr.className = 'quick-replies';
+            quickReplies.forEach(q => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-reply-btn';
+                btn.textContent = q;
+                btn.addEventListener('click', () => {
+                    qr.remove();
+                    sendMessage(q);
+                });
+                qr.appendChild(btn);
+            });
+            col.appendChild(qr);
+        }
+
+        wrap.appendChild(col);
+        messages.appendChild(wrap);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showTyping() {
+        const wrap = document.createElement('div');
+        wrap.className = 'msg bot typing-indicator show';
+        wrap.id = 'typingIndicator';
+
+        const av = document.createElement('div');
+        av.className = 'msg-avatar';
+        av.textContent = 'N';
+        wrap.appendChild(av);
+
+        const dots = document.createElement('div');
+        dots.className = 'typing-dots';
+        dots.innerHTML = '<span></span><span></span><span></span>';
+        wrap.appendChild(dots);
+
+        messages.appendChild(wrap);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function hideTyping() {
+        const t = document.getElementById('typingIndicator');
+        if (t) t.remove();
+    }
+
+    function sendMessage(text) {
+        if (!text.trim()) return;
+        addMessage(text, 'user');
+        input.value = '';
+        sendBtn.disabled = true;
+
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            const answer = findAnswer(text);
+            if (answer) {
+                addMessage(answer, 'bot');
+            } else {
+                addMessage('Non ho trovato una risposta precisa. Puoi contattarci a assistenza@nexxum.it oppure consultare le FAQ qui sopra. Posso aiutarti con qualcos\'altro?', 'bot');
+            }
+            sendBtn.disabled = false;
+            input.focus();
+        }, 900 + Math.random() * 400);
+    }
+
+    toggle.addEventListener('click', () => {
+        isOpen = !isOpen;
+        bubble.classList.toggle('open', isOpen);
+        badge.classList.add('hidden');
+        if (isOpen) input.focus();
+    });
+
+    sendBtn.addEventListener('click', () => sendMessage(input.value));
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(input.value); });
+    input.addEventListener('input', () => { sendBtn.disabled = !input.value.trim(); });
+
+    // Init welcome message
+    sendBtn.disabled = true;
+    setTimeout(() => {
+        addMessage('Ciao! Sono l\'assistente Nexxum 👋 Come posso aiutarti oggi?', 'bot', QUICK);
+    }, 300);
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navMenu = document.querySelector('.nav-menu');
+        const activeLink = document.querySelector('.nav-link-active');
+        const allLinks = document.querySelectorAll('.nav-menu .nav-link');
+        const indicator = document.createElement('div');
+        indicator.className = 'nav-indicator';
+        navMenu.appendChild(indicator);
+        if (activeLink) {
+            const rect = activeLink.getBoundingClientRect();
+            const menuRect = navMenu.getBoundingClientRect();
+            indicator.style.width = rect.width + 'px';
+            indicator.style.left = (rect.left - menuRect.left) + 'px';
+            const prevPos = sessionStorage.getItem('navIndicatorPos');
+            if (prevPos) {
+                indicator.style.transition = 'none';
+                indicator.style.left = prevPos + 'px';
+                indicator.offsetHeight;
+                indicator.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                indicator.style.left = (rect.left - menuRect.left) + 'px';
+            }
+        }
+        allLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const rect = this.getBoundingClientRect();
+                const menuRect = navMenu.getBoundingClientRect();
+                sessionStorage.setItem('navIndicatorPos', rect.left - menuRect.left);
+            });
+        });
+    });
+    </script>
+<script src="cookie-banner.js"></script>
+</body>
+</html>

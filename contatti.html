@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexxum - Contattaci</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="260130_Nexxum_Logo.png" alt="Nexxum" class="logo-img">
+                </a>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="fid.html" class="nav-link">
+                            <img src="icons8-impronta-digitale-50-blue.png" alt="FID" class="nav-icon-img">
+                            FID
+                        </a>
+                    </li>
+                    <li><a href="players.html" class="nav-link">Players</a></li>
+                    <li>
+                        <a href="academy.html" class="nav-link">
+                            <img src="mortarboard-blue.png" alt="Academy" class="nav-icon-img">
+                            Academy
+                        </a>
+                    </li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/authenticate?client_id=nexxum-data&tab_id=F_lFXhoql-0" class="nav-link login">Accedi</a>
+                <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/registration?client_id=nexxum-data&tab_id=er_XM1Qq2pM" class="btn-register">Registrati</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="contatti-hero">
+            <div class="contatti-hero-container">
+                <div class="contatti-hero-content">
+                    <div class="contatti-hero-badge">Supporto</div>
+                    <h1 class="contatti-title">Contattaci</h1>
+                    <p class="contatti-subtitle">Hai domande o vuoi saperne di più? Siamo qui per aiutarti.</p>
+
+                    <div class="contatti-info-cards">
+                        <div class="contatti-info-card">
+                            <div class="contatti-info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="contatti-info-label">Email</p>
+                                <a href="mailto:assistenza@nexxum.it" class="contatti-info-value">assistenza@nexxum.it</a>
+                            </div>
+                        </div>
+                        <div class="contatti-info-card">
+                            <div class="contatti-info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="contatti-info-label">Telefono</p>
+                                <a href="tel:+393760313150" class="contatti-info-value">+39 376 031 3150</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contatti-hero-visual">
+                    <img src="02.png" alt="Contattaci">
+                </div>
+            </div>
+        </section>
+
+        <section class="contatti-form-section" id="contatti-form">
+            <div class="contatti-form-container">
+                <div class="candidatura-header">
+                    <div class="candidatura-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="candidatura-title">Scrivici un messaggio</h2>
+                    <p class="candidatura-desc">Compila il form e ti risponderemo il prima possibile.</p>
+                </div>
+
+                <div class="candidatura-card">
+                    <form class="candidatura-form" action="#" method="POST">
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                I tuoi dati
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nome">Nome <span class="required">*</span></label>
+                                    <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cognome">Cognome <span class="required">*</span></label>
+                                    <input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" placeholder="nome@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Telefono <span class="required">*</span></label>
+                                    <input type="tel" id="telefono" name="telefono" placeholder="+39 000 000 0000" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                La tua richiesta
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="oggetto">Oggetto <span class="required">*</span></label>
+                                    <select id="oggetto" name="oggetto" required>
+                                        <option value="generico">Generico</option>
+                                        <option value="supporto">Supporto tecnico</option>
+                                        <option value="commerciale">Informazioni commerciali</option>
+                                        <option value="partnership">Partnership</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ruolo">Ruolo <span class="required">*</span></label>
+                                    <select id="ruolo" name="ruolo" required>
+                                        <option value="altro">Altro</option>
+                                        <option value="imprenditore">Imprenditore</option>
+                                        <option value="commercialista">Commercialista</option>
+                                        <option value="consulente">Consulente finanziario</option>
+                                        <option value="mediatore">Mediatore creditizio</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="azienda">Azienda</label>
+                                <input type="text" id="azienda" name="azienda" placeholder="Nome della tua azienda (facoltativo)">
+                            </div>
+                            <div class="form-group">
+                                <label for="messaggio">Messaggio <span class="required">*</span></label>
+                                <textarea id="messaggio" name="messaggio" rows="5" placeholder="Descrivi la tua richiesta..." required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <div class="form-group-checkbox">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">Dichiari di aver letto l'informativa sulla <a href="#" class="privacy-link">Privacy Policy</a></label>
+                        </div>
+
+                        <button type="submit" class="btn-invia">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                            Invia messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h4>Sito Web</h4>
+                    <a href="index.html">Home</a>
+                    <a href="fid.html">FID</a>
+                    <a href="players.html">Players</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Login</h4>
+                    <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/registration?client_id=nexxum-data&tab_id=er_XM1Qq2pM">Registrati</a>
+                    <a href="https://auth.app.nexxum.it/realms/nexxum/login-actions/authenticate?client_id=nexxum-data&tab_id=F_lFXhoql-0">Accedi</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Azienda</h4>
+                    <a href="about.html">About</a>
+                    <a href="lavora.html" class="footer-link-red">Lavora con noi</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Supporto</h4>
+                    <a href="contatti.html" class="footer-link-red">Contattaci</a>
+                    <a href="faq.html" class="footer-link-red">FAQ</a>
+                    <a href="tutorial.html" class="footer-link-red">Tutorial</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Trasparenza</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="termini.html">Termini e condizioni di utilizzo</a>
+                    <a href="privacy.html#cookie-policy">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            const activeLink = document.querySelector('.nav-link-active');
+            const allLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+            const indicator = document.createElement('div');
+            indicator.className = 'nav-indicator';
+            navMenu.appendChild(indicator);
+
+            if (activeLink) {
+                const rect = activeLink.getBoundingClientRect();
+                const menuRect = navMenu.getBoundingClientRect();
+                indicator.style.width = rect.width + 'px';
+                indicator.style.left = (rect.left - menuRect.left) + 'px';
+
+                const prevPos = sessionStorage.getItem('navIndicatorPos');
+                if (prevPos) {
+                    indicator.style.transition = 'none';
+                    indicator.style.left = prevPos + 'px';
+                    indicator.offsetHeight;
+                    indicator.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                    indicator.style.left = (rect.left - menuRect.left) + 'px';
+                }
+            }
+
+            allLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const rect = this.getBoundingClientRect();
+                    const menuRect = navMenu.getBoundingClientRect();
+                    sessionStorage.setItem('navIndicatorPos', rect.left - menuRect.left);
+                });
+            });
+        });
+    </script>
+<script src="cookie-banner.js"></script>
+</body>
+</html>

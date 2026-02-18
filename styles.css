@@ -3302,6 +3302,111 @@ body {
     transform: translateY(-2px);
 }
 
+/* ===================================================
+   HAMBURGER MENU
+   =================================================== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    z-index: 1100;
+}
+
+.hamburger:hover {
+    background: rgba(74, 108, 247, 0.08);
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-nav-overlay.open {
+    display: flex;
+    opacity: 1;
+}
+
+.mobile-nav-overlay a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 50px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-nav-overlay a:hover {
+    background: rgba(74, 108, 247, 0.08);
+    color: #4a6cf7;
+}
+
+.mobile-nav-overlay .mobile-nav-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin: 8px 0;
+}
+
+.mobile-nav-overlay .mobile-nav-login {
+    font-size: 16px;
+    color: #4a6cf7;
+}
+
+.mobile-nav-overlay .mobile-nav-register {
+    font-size: 16px;
+    background: #e8f0ff;
+    color: #4a6cf7;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .navbar {
@@ -3310,10 +3415,18 @@ body {
     }
 
     .nav-container {
-        padding: 0 24px;
+        padding: 0 20px;
     }
 
     .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-right {
         display: none;
     }
 
@@ -3388,6 +3501,683 @@ body {
     .partner-bar {
         flex-direction: column;
         gap: 12px;
+    }
+
+    /* BANCHE SECTION */
+    .banche {
+        padding: 60px 0 80px;
+    }
+
+    .banche-container {
+        padding: 0 24px;
+    }
+
+    .banche-top {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .banche-title {
+        font-size: 32px;
+    }
+
+    .banche-subtitle {
+        font-size: 16px;
+    }
+
+    .banche-badge img {
+        max-width: 280px;
+        width: 100%;
+    }
+
+    .fid-card-image img {
+        max-width: 100%;
+    }
+
+    /* ECOSISTEMA */
+    .ecosistema {
+        padding: 60px 0 0;
+    }
+
+    .ecosistema-container {
+        padding: 0 24px;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .ecosistema-title {
+        font-size: 32px;
+    }
+
+    .ecosistema-description {
+        font-size: 16px;
+    }
+
+    .ecosistema-image img {
+        max-width: 100%;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .cta-container {
+        padding: 0 24px;
+    }
+
+    .cta-title {
+        font-size: 26px;
+        max-width: 100%;
+    }
+
+    .cta-academy {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .cta-academy-title {
+        font-size: 24px;
+    }
+
+    .cta-academy-desc {
+        font-size: 15px;
+    }
+
+    .cta-academy-image img {
+        max-width: 100%;
+    }
+
+    /* FID HERO */
+    .fid-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .fid-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .fid-hero-title {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .fid-hero-subtitle {
+        font-size: 18px;
+    }
+
+    .fid-hero-desc {
+        font-size: 15px;
+    }
+
+    .fid-hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-fid-primary,
+    .btn-fid-ghost {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .fid-hero-features {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .fid-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* FID CARD */
+    .fid-card-new {
+        flex-direction: column;
+    }
+
+    .fid-main {
+        padding: 20px;
+    }
+
+    .fid-details-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .fid-center-section {
+        padding: 20px;
+    }
+
+    .fid-sidebar {
+        padding: 20px;
+    }
+
+    .fid-metrics {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    /* COMPONENTI */
+    .componenti {
+        padding: 60px 0 80px;
+    }
+
+    .componenti-container {
+        padding: 0 24px;
+    }
+
+    .componenti-title {
+        font-size: 28px;
+    }
+
+    .componenti-description {
+        font-size: 15px;
+        margin-bottom: 32px;
+    }
+
+    .componenti-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-tooltip {
+        display: none;
+    }
+
+    /* SUITE AZIENDE */
+    .suite-aziende {
+        padding: 60px 0 80px;
+    }
+
+    .suite-container {
+        padding: 0 24px;
+        overflow-x: auto;
+    }
+
+    .suite-title {
+        font-size: 28px;
+    }
+
+    .suite-subtitle {
+        font-size: 15px;
+    }
+
+    .suite-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* CONSULENTE */
+    .consulente {
+        padding: 60px 0;
+    }
+
+    .consulente-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .consulente-title {
+        font-size: 28px;
+    }
+
+    .consulente-description {
+        font-size: 16px;
+    }
+
+    .consulente-image img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* PIANI FID */
+    .piani {
+        padding: 60px 0 80px;
+    }
+
+    .piani-container {
+        padding: 0 24px;
+    }
+
+    .piani-title {
+        font-size: 28px;
+    }
+
+    .piani-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .piani-grid-bottom {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .piano-card {
+        padding: 24px 20px;
+    }
+
+    .piano-header-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* PLAYERS HERO */
+    .players-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .players-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .players-title {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .players-subtitle {
+        font-size: 18px;
+    }
+
+    .players-hero-desc {
+        font-size: 15px;
+    }
+
+    .players-hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-players-primary,
+    .btn-players-ghost {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .players-hero-roles {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .players-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* PLAYERS DETAIL */
+    .players-detail {
+        padding: 40px 0 60px;
+    }
+
+    .players-detail-container {
+        padding: 0 24px;
+    }
+
+    .players-detail-title {
+        font-size: 26px;
+    }
+
+    .players-detail-text {
+        font-size: 14px;
+    }
+
+    .player-card {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .player-card-image img {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .player-card-content {
+        padding: 24px 20px;
+    }
+
+    .player-card-title {
+        font-size: 18px;
+    }
+
+    /* PARTNERSHIP */
+    .partnership {
+        padding: 60px 0 80px;
+    }
+
+    .partnership-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .partnership-title {
+        font-size: 26px;
+    }
+
+    .partnership-logo img {
+        max-width: 120px;
+    }
+
+    /* ACADEMY HERO */
+    .academy-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .academy-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .academy-title {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .academy-subtitle {
+        font-size: 18px;
+    }
+
+    .academy-hero-desc {
+        font-size: 15px;
+    }
+
+    .academy-hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-academy-primary,
+    .btn-academy-ghost {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .academy-hero-stats {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .academy-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* SEMINARI */
+    .seminari {
+        padding: 60px 0 80px;
+    }
+
+    .seminari-container {
+        padding: 0 24px;
+    }
+
+    .seminari-title {
+        font-size: 26px;
+    }
+
+    .seminari-desc {
+        font-size: 15px;
+    }
+
+    .seminari-subtitle {
+        font-size: 22px;
+    }
+
+    .seminari-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .seminario-card-img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* ABOUT HERO */
+    .about-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .about-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .about-title {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .about-subtitle {
+        font-size: 18px;
+    }
+
+    .about-hero-desc {
+        font-size: 15px;
+    }
+
+    .about-hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-about-primary,
+    .btn-about-ghost {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .about-hero-stats {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .about-hero-visual {
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .about-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* CHI SIAMO */
+    .chi-siamo {
+        padding: 60px 0 80px;
+    }
+
+    .chi-siamo-container {
+        padding: 0 24px;
+    }
+
+    .chi-siamo-title {
+        font-size: 26px;
+    }
+
+    .chi-siamo-text {
+        font-size: 15px;
+    }
+
+    /* TEAM */
+    .team {
+        padding: 60px 0 80px;
+    }
+
+    .team-container {
+        padding: 0 24px;
+    }
+
+    .team-title {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .team-photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* LAVORA HERO */
+    .lavora-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .lavora-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .lavora-title {
+        font-size: 38px;
+    }
+
+    .lavora-subtitle {
+        font-size: 15px;
+    }
+
+    .lavora-hero-desc {
+        font-size: 14px;
+    }
+
+    .btn-lavora-primary {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .lavora-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* CANDIDATURA */
+    .candidatura {
+        padding: 60px 0 80px;
+    }
+
+    .candidatura-container {
+        padding: 0 24px;
+    }
+
+    .candidatura-card {
+        padding: 24px 20px;
+    }
+
+    .candidatura-title {
+        font-size: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* CONTATTI HERO */
+    .contatti-hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+
+    .contatti-hero-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 40px;
+    }
+
+    .contatti-title {
+        font-size: 38px;
+    }
+
+    .contatti-subtitle {
+        font-size: 15px;
+    }
+
+    .contatti-info-card {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contatti-hero-visual img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .contatti-form-container {
+        padding: 0 24px;
+    }
+
+    /* FOOTER */
+    .footer-container {
+        padding: 0 24px;
+    }
+
+    .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    /* LINGUAGGIO */
+    .linguaggio-container {
+        padding: 0 24px;
+    }
+
+    .linguaggio {
+        padding: 80px 0 60px;
+    }
+
+    /* COME FUNZIONA */
+    .come-funziona {
+        padding: 60px 0 80px;
+    }
+
+    .come-funziona-container {
+        padding: 0 24px;
+    }
+
+    .come-funziona-title {
+        font-size: 28px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 

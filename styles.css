@@ -3214,6 +3214,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .seminario-card-img {
@@ -3221,6 +3222,17 @@ body {
     border-radius: 20px;
     display: block;
     object-fit: cover;
+}
+
+.seminario-wrapper .btn-academy-primary {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 2;
 }
 
 .seminario-card {

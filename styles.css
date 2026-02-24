@@ -3489,8 +3489,8 @@ body {
         font-size: 24px;
     }
 
-    .hero-image img {
-        max-width: 320px;
+    .hero-image {
+        display: none;
     }
 
     .linguaggio-title {
@@ -3645,9 +3645,8 @@ body {
         gap: 16px;
     }
 
-    .fid-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+    .fid-hero-visual {
+        display: none;
     }
 
     /* FID CARD */
@@ -3827,9 +3826,8 @@ body {
         gap: 16px;
     }
 
-    .players-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+    .players-hero-visual {
+        display: none;
     }
 
     /* PLAYERS DETAIL */
@@ -3931,9 +3929,8 @@ body {
         gap: 24px;
     }
 
-    .academy-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+    .academy-hero-visual {
+        display: none;
     }
 
     /* SEMINARI */
@@ -4012,13 +4009,7 @@ body {
     }
 
     .about-hero-visual {
-        max-width: 100%;
-        margin-right: 0;
-    }
-
-    .about-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+        display: none;
     }
 
     /* CHI SIAMO */
@@ -4095,9 +4086,8 @@ body {
         justify-content: center;
     }
 
-    .lavora-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+    .lavora-hero-visual {
+        display: none;
     }
 
     /* CANDIDATURA */
@@ -4147,9 +4137,8 @@ body {
         gap: 12px;
     }
 
-    .contatti-hero-visual img {
-        max-width: 100%;
-        width: 100%;
+    .contatti-hero-visual {
+        display: none;
     }
 
     .contatti-form-container {

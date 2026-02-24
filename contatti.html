@@ -264,6 +264,18 @@
             });
         });
     </script>
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var corso = params.get('corso');
+            if (corso) {
+                var messaggio = document.getElementById('messaggio');
+                if (messaggio) {
+                    messaggio.value = 'Vorrei saperne di più sul corso: ' + corso;
+                }
+            }
+        })();
+    </script>
 <script src="cookie-banner.js"></script>
     <script>
         (function() {

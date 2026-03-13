@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="candidatura-card">
-                    <form class="candidatura-form" action="#" method="POST">
+                    <form class="candidatura-form" id="contattiForm">
                         <div class="form-section">
                             <h3 class="form-section-title">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -275,6 +275,31 @@
                 }
             }
         })();
+
+        document.getElementById('contattiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var nome = document.getElementById('nome').value;
+            var cognome = document.getElementById('cognome').value;
+            var email = document.getElementById('email').value;
+            var telefono = document.getElementById('telefono').value;
+            var oggetto = document.getElementById('oggetto').value;
+            var ruolo = document.getElementById('ruolo').value;
+            var azienda = document.getElementById('azienda').value;
+            var messaggio = document.getElementById('messaggio').value;
+
+            var subject = encodeURIComponent('Contatto da ' + nome + ' ' + cognome + ' - ' + oggetto);
+            var body = encodeURIComponent(
+                'Nome: ' + nome + ' ' + cognome + '\n' +
+                'Email: ' + email + '\n' +
+                'Telefono: ' + telefono + '\n' +
+                'Ruolo: ' + ruolo + '\n' +
+                (azienda ? 'Azienda: ' + azienda + '\n' : '') +
+                'Oggetto: ' + oggetto + '\n\n' +
+                'Messaggio:\n' + messaggio
+            );
+
+            window.location.href = 'mailto:assistenza@nexxum.it?subject=' + subject + '&body=' + body;
+        });
     </script>
 <script src="cookie-banner.js"></script>
     <script>
